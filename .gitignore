@@ -1,0 +1,63 @@
+# Ignore build outputs
+bin/
+obj/
+artifacts/
+
+# Visual Studio workspace
+.vs/
+.vscode/
+
+# Rider
+.idea/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet packages
+packages/
+*.nupkg
+
+# Dotnet
+project.lock.json
+project.fragment.lock.json
+
+# Publish output
+publish/
+
+# Local app settings (uncomment if you keep secrets locally)
+.local.settings.json
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test results
+TestResults/
+
+# Coverage
+coverage.opencover.xml
+coverage*.xml
+
+# Resharper
+_ReSharper*/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Docker
+docker-compose.override.yml
+
+# Others
+*.db
+*.db-journal
+
+# Ignore generated Razor files
+**/obj/**
+**/bin/**

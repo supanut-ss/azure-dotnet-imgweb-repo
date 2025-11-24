@@ -27,6 +27,8 @@ namespace Web.Pages
         [BindProperty]
         public IFormFile Upload { get; set; }
 
+        public string ErrorMessage { get; set; }
+
         public async Task OnGetAsync()
         {
             var imagesUrl = _options.ApiUrl;
@@ -40,8 +42,17 @@ namespace Web.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
+            const long maxSizeBytes = 10 * 1024 * 1024; // 10 MB
+
             if (Upload != null && Upload.Length > 0)
             {
+                if (Upload.Length > maxSizeBytes)
+                {
+                    ErrorMessage = "ขนาดไฟ,ืเกิน 10 mb";
+                    await OnGetAsync();
+                    return Page();
+                }
+
                 var imagesUrl = _options.ApiUrl;
 
                 using (var image = new StreamContent(Upload.OpenReadStream()))
@@ -50,6 +61,7 @@ namespace Web.Pages
                     var response = await _httpClient.PostAsync(imagesUrl, image);
                 }
             }
+
             return RedirectToPage("/Index");
         }
     }
